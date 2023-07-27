@@ -30,7 +30,7 @@ const usPresidents: string[] = [
   'John Calvin Coolidge',
   'Herbert Clark Hoover',
   'Franklin Delano Roosevelt',
-  'Harry S. Truman',
+  'Harry S Truman',
   'Dwight David Eisenhower',
   'John Fitzgerald Kennedy',
   'Lyndon Baines Johnson',

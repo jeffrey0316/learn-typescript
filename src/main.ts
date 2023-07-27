@@ -20,6 +20,15 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
 <p>Ready to begin?</p>
 </section>
 
+<section style="display: none" class='written-guesses'>
+  <h2>Does Your President Contain the Letter: <span class="write-letter">X</span>?</h2>
+<div class='letter-buttons-y-n'>
+    <button id="yesButton">Yes</button>
+    <button id="noButton">No</button>
+</div>
+</section>
+
+
     <button id="intro-btn" class="btn">START GAME
     </button>
 
