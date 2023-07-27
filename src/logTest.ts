@@ -6,7 +6,7 @@ export default function logTest() {
   const yesBtn = document.getElementById('yesButton') as HTMLButtonElement
   const noBtn = document.getElementById('noButton') as HTMLButtonElement
   const writeLetter = document.querySelector('.write-letter') as HTMLSpanElement
-  let filteredUSPresidents: string[]
+  //   let filteredUSPresidents: string[]
 
   //   This is an array of all presidents, lowercased
   const lowercasedPresidentsAll = usPresidents.map(utilities.toLower)
