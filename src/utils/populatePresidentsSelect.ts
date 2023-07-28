@@ -1,4 +1,4 @@
-import usPresidents from './presidents'
+import usPresidents from '../data/presidents'
 
 export default function populatePresidentsSelect() {
   const selectElement = document.getElementById(

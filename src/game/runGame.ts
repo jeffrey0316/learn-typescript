@@ -1,5 +1,4 @@
-import usPresidents from './presidents'
-import utilities from './utilities'
+import usPresidents from '../data/presidents'
 
 export default function runGame() {
   const yesBtn = document.getElementById('yesButton') as HTMLButtonElement
@@ -15,16 +14,27 @@ export default function runGame() {
     'remaining-presidents'
   ) as HTMLParagraphElement
 
-  let lowercasedPresidentsAll = usPresidents.map(utilities.toLower)
-  let joinedPresString: string = lowercasedPresidentsAll
-    .join('')
-    .replace(/ /g, '')
-
-  const usedLetters: string[] = []
-  let availableLettersArr: string[] = [...new Set(joinedPresString)].sort()
+  let lowercasedPresidentsAll: string[]
+  let joinedPresString: string
+  let usedLetters: string[]
+  let availableLettersArr: string[]
   let randomLetter: string
-  let computerGuesses: number = 4
-  let gameOver: boolean = false
+  let computerGuesses: number
+  let gameOver: boolean
+
+  function initializeGame() {
+    lowercasedPresidentsAll = usPresidents.map((president) =>
+      president.toLowerCase()
+    )
+    joinedPresString = lowercasedPresidentsAll.join('').replace(/ /g, '')
+    usedLetters = []
+    availableLettersArr = [...new Set(joinedPresString)].sort()
+    randomLetter = getRandomElementFromArray(availableLettersArr)
+    computerGuesses = 4
+    gameOver = false
+
+    updateLetterAndLettersSpan()
+  }
 
   function getRandomElementFromArray(arr: string[]): string {
     if (!Array.isArray(arr) || arr.length === 0) {
@@ -45,14 +55,18 @@ export default function runGame() {
       usedLettersSpan.innerHTML = usedLetters.join(' ')
       remainingPresidents.innerHTML = lowercasedPresidentsAll.join(' ')
     }
-    if (computerGuesses <= 0) {
+    if (computerGuesses < 0) {
       writtenLetters.innerHTML = `Is your president ${
         lowercasedPresidentsAll[
           Math.floor(Math.random() * lowercasedPresidentsAll.length)
         ]
       }?`
+
       remainingPresidents.innerHTML = ''
       gameOver = true
+    }
+    if (computerGuesses < -1) {
+      usedLettersSpan.innerHTML = ''
     }
   }
 
@@ -62,7 +76,6 @@ export default function runGame() {
         ? president.includes(randomLetter)
         : !president.includes(randomLetter)
     )
-    console.log(lowercasedPresidentsAll)
 
     joinedPresString = lowercasedPresidentsAll.join('').replace(/ /g, '')
     availableLettersArr = [...new Set(joinedPresString)].sort()
@@ -73,28 +86,24 @@ export default function runGame() {
 
     updateLetterAndLettersSpan()
 
-    if (gameOver && isYesButton && computerGuesses < 0) {
-      document.documentElement.style.setProperty(
-        '--background-color',
-        '#00b894'
-      )
-      document.documentElement.style.setProperty(
-        '--foreground-color',
-        '#000000'
-      )
-      writtenLetters.innerHTML = `I win!`
-      console.log('I win!')
+    if (gameOver && isYesButton && computerGuesses < -1) {
+      handleGameOver(true)
     }
-    if (gameOver && !isYesButton && computerGuesses < 0) {
-      document.documentElement.style.setProperty(
-        '--background-color',
-        '#e74c3c'
-      )
-      document.documentElement.style.setProperty(
-        '--foreground-color',
-        '#000000'
-      )
-      writtenLetters.innerHTML = `I lose!`
+    if (gameOver && !isYesButton && computerGuesses < -1) {
+      handleGameOver(false)
+    }
+  }
+
+  function handleGameOver(isWin: boolean) {
+    if (isWin) {
+      document.documentElement.style.setProperty('--color-primary', '#00b894')
+      document.documentElement.style.setProperty('--color-secondary', '#000000')
+      writtenLetters.innerHTML = 'I win!'
+      console.log('I win!')
+    } else {
+      document.documentElement.style.setProperty('--color-primary', '#e74c3c')
+      document.documentElement.style.setProperty('--color-secondary', '#000000')
+      writtenLetters.innerHTML = 'I lose!'
       console.log('I lost!')
     }
   }
@@ -103,7 +112,5 @@ export default function runGame() {
   noBtn.addEventListener('click', () => handleClick(false))
 
   // Initial setup
-  randomLetter = getRandomElementFromArray(availableLettersArr)
-  usedLetters.push(randomLetter)
-  updateLetterAndLettersSpan()
+  initializeGame()
 }
