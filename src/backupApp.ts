@@ -63,3 +63,83 @@ window.addEventListener('load', () => {
 
   startGame()
 })
+
+/*
+import usPresidents from './presidents'
+// import manipulateData from './manipulateData'
+import utilities from './utilities'
+
+export default function runGame() {
+  const yesBtn = document.getElementById('yesButton') as HTMLButtonElement
+  const noBtn = document.getElementById('noButton') as HTMLButtonElement
+  const writeLetter = document.querySelector('.write-letter') as HTMLSpanElement
+  const usedLettersSpan = document.getElementById(
+    'used-letters'
+  ) as HTMLSpanElement
+
+  let lowercasedPresidentsAll = usPresidents.map(utilities.toLower)
+
+  const usedLetters: string[] = []
+
+  const joinPresidentNames = (array: string[]) =>
+    array.join('').replace(/ /g, '')
+  let joinedPresString: string = joinPresidentNames(lowercasedPresidentsAll)
+
+  const getUniqueLetters = (array: string) => [...new Set(array)].sort()
+  let availableLettersArr: string[] = getUniqueLetters(joinedPresString)
+
+  let randomIndex: number
+
+  const getRandomElementFromArray = (arr: string[]): string => {
+    if (!Array.isArray(arr) || arr.length === 0) {
+      return ''
+    }
+
+    randomIndex = Math.floor(Math.random() * arr.length)
+    if (usedLetters.includes(arr[randomIndex])) {
+      getRandomElementFromArray(arr)
+    }
+    return arr[randomIndex]
+  }
+
+  let count: number = 4
+  let randomLetter = getRandomElementFromArray(availableLettersArr)
+
+  usedLetters.push(randomLetter)
+
+  writeLetter.innerHTML = randomLetter
+  usedLettersSpan.innerHTML = usedLetters.join(' ')
+  yesBtn.addEventListener('click', () => {
+    // this will filter the presidents array
+    // to remove presidents without the Yes letter
+
+    lowercasedPresidentsAll = lowercasedPresidentsAll.filter((president) =>
+      president.includes(randomLetter)
+    )
+    joinedPresString = joinPresidentNames(lowercasedPresidentsAll)
+
+    availableLettersArr = getUniqueLetters(joinedPresString)
+
+    randomLetter = getRandomElementFromArray(availableLettersArr)
+
+    usedLetters.push(randomLetter)
+
+    writeLetter.innerHTML = randomLetter
+    usedLettersSpan.innerHTML = usedLetters.join(' ')
+  })
+
+  noBtn.addEventListener('click', () => {
+    lowercasedPresidentsAll = lowercasedPresidentsAll.filter(
+      (president) => !president.includes(randomLetter)
+    )
+
+    randomLetter = getRandomElementFromArray(availableLettersArr)
+
+    usedLetters.push(randomLetter)
+
+    writeLetter.innerHTML = randomLetter
+    usedLettersSpan.innerHTML = usedLetters.join(' ')
+  })
+}
+
+*/

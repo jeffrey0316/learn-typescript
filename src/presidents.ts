@@ -39,7 +39,7 @@ const usPresidents: string[] = [
   'James Earl Carter',
   'Ronald Wilson Reagan',
   'George Herbert Walker Bush',
-  'Willian Jefferson Clinton',
+  'William Jefferson Clinton',
   'George Walker Bush',
   'Barack Hussein Obama',
   'Donald John Trump',

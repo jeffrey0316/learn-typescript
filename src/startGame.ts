@@ -1,4 +1,4 @@
-import logTest from './logTest'
+import runGame from './runGame'
 
 export default function startGame() {
   const selectElement = document.getElementById(
@@ -11,10 +11,9 @@ export default function startGame() {
 
   introBtn.addEventListener('click', () => {
     selectElement.disabled = true
-    console.log('begin!')
     introBox.style.display = 'none'
     introBtn.style.display = 'none'
     questionBox.style.display = 'flex'
-    logTest()
+    runGame()
   })
 }

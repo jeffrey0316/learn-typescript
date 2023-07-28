@@ -3,14 +3,19 @@
   padding: 0;
 }
 
+:root {
+  --background-color: rgb(82, 10, 10);
+  --foreground-color: rgb(179, 156, 26);
+}
+
 body {
   font-family: Avenir, sans-serif;
   font-size: 1.6rem;
 }
 
 .header {
-  background: rgb(82, 10, 10);
-  color: rgb(179, 156, 26);
+  background: var(--background-color);
+  color: var(--foreground-color);
 }
 
 .h1 {
@@ -66,8 +71,8 @@ body {
 }
 
 .btn:hover {
-  background: rgb(82, 10, 10);
-  color: rgb(179, 156, 26);
+  background: var(--background-color);
+  color: var(--foreground-color);
 }
 
 .select {
@@ -79,6 +84,7 @@ body {
   border-radius: 10px;
   text-align: start;
   min-width: 250px;
+  max-width: 90%;
   font-size: 1.6rem;
   /* -webkit-appearance: none; */
   text-transform: uppercase;
@@ -101,7 +107,7 @@ body {
 .written-guesses {
   flex-direction: column;
   justify-content: center;
-  margin: 1rem 0 3rem;
+  margin: 1rem 0 2rem;
 }
 
 .written-guesses h2 {
@@ -124,8 +130,8 @@ body {
   border: none;
   cursor: pointer;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-  background: rgb(82, 10, 10);
-  color: rgb(179, 156, 26);
+  background: var(--background-color);
+  color: var(--foreground-color);
   font-weight: bold;
   transition: all 300ms ease;
   min-width: 12rem;
@@ -144,4 +150,47 @@ body {
   font-size: 2rem;
   text-decoration: underline;
   text-transform: uppercase;
+}
+
+.used-letters {
+  text-align: center;
+  width: 100%;
+  margin-bottom: 1.2rem;
+}
+
+.used-letters span {
+  text-transform: uppercase;
+}
+
+@media (max-width: 768px) {
+  .h1 {
+    font-size: 1.6rem;
+  }
+
+  .game-rules {
+    margin-top: 1.5rem;
+  }
+
+  .game-rules-list {
+    font-size: 0.8rem;
+  }
+
+  .disclaimer {
+    margin-bottom: 0.6rem !important;
+  }
+
+  .disclaimer em {
+    font-size: 1rem;
+  }
+  .letter-buttons-y-n button {
+    min-width: 6rem;
+  }
+
+  .game-rules {
+    max-width: 90%;
+  }
+
+  .select {
+    font-size: 1.2rem;
+  }
 }
